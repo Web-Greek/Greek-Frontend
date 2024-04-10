@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-//import { useParams } from 'react-router-dom';
-import {Box,Button,Stack} from '@mui/material';
+import {Box,Button,Stack,TextField} from '@mui/material';
 import styled from 'styled-components';
 import DetailPageEx from './DetailpageEx';
+import contents from './Contents';
 
 const CustomButton = styled(Button)`
   background-color: #009630;
@@ -14,22 +14,7 @@ const CustomButton = styled(Button)`
 `;
 
 const DetailPage = () => {
-  //const { postId } = useParams(); 
-  // useParams 훅을 사용하여 URL 파라미터에서 postId를 가져옵니다. DetailPageEx로 이전
-  const contents=[
-      {title:"소프트웨어 공학_5주차_손 필기본",
-      date:"2024-03-28",
-      tag:"#소공 #소공5주차 #좋아요",
-      content:"좋아요 10 넘을 시 공개하겠음"},
-      {title:"데이터 과학_3주차_퀴즈",
-      date:"2024-03-20",
-      tag:"#데과 #데과3주차 #퀴즈 #퀴즈어렵다 #종강",
-      content:"1. numpy란 무엇인가?   2. numpy랑 pandas의 차이점은?"},
-      {title:"고웹프_정리본",
-      date:"2024-04-10",
-      tag:"#고웹프 #고급 웹프로그래밍 #화이팅",
-      content:"React props state hook 등"}
-  ];
+
   // 현재 랜덤 개체의 인덱스 상태
   const [randomIndex, setRandomIndex] = useState(0);
   // 현재 선택된 무작위 개체 상태
@@ -49,6 +34,14 @@ const DetailPage = () => {
 
   //하트 버튼 누를 때마다 좋아요 수 올라가는 기능
   const [count,setCount]=useState(0);
+
+  const [showComment, setShowComment] = useState(false); // 댓글 창을 보여줄지 여부를 저장하는 상태
+
+  // 버튼 클릭 시 댓글 창을 보이거나 숨기는 함수
+  const handleButtonClick = () => {
+    setShowComment(prevState => !prevState); // 이전 상태의 반대값으로 변경
+  };
+
   return (
     <>
     <Box
@@ -56,7 +49,7 @@ const DetailPage = () => {
         position: 'relative',
         width: 900,
         height: 700,
-        margin: 3,
+        margin: 2,
         border: 1,
         borderColor: '#eeeded',
         padding: 3,
@@ -73,7 +66,8 @@ const DetailPage = () => {
       <DetailPageEx title={randomObject.title}
                    date={randomObject.date}
                    tag={randomObject.tag}
-                   content={randomObject.content}>
+                   content={randomObject.content}
+                   img={randomObject.img}>
       </DetailPageEx>
       {/* 글 작성자일 경우에만 권한 허용-로그인 기능 구현 시 수정 */}
       <Stack
@@ -91,22 +85,54 @@ const DetailPage = () => {
         <CustomButton>삭제하기</CustomButton>
       </Stack>
     </Box>
-    <LikeButton
-        onClick={()=> {
+    <Box 
+      sx={{
+      margin: 1,
+      padding:1,
+      fontSize: '1.2rem',
+      }}>
+      {/*좋아요 버튼 부분 : 누를 때마다 1씩 증가함*/ }
+      <Button
+        sx={{
+          border:'none'
+        }}
+        onClick={()=>{
           setCount(count+1);
         }}>
-        <img src={process.env.PUBLIC_URL + "/heart.png"} width="35px" height="35px"/>
-    </LikeButton>
-    <p text-size="5rem" text-align="center">{count} </p>
+        <img src={process.env.PUBLIC_URL + "/heart.png"} width="40rem" height="40rem" />
+      </Button>
+      Like &nbsp;
+      {count}
+      &nbsp;&nbsp;&nbsp;
+      <Button 
+        sx={{
+          border:'none',
+          bgcolor: 'transparent', 
+          color: 'black',
+          boxShadow: 'none', // 그림자 제거
+          '&:hover': {backgroundColor: 'transparent'}
+        }}
+        onClick={handleButtonClick} variant="contained" >
+        <img src={process.env.PUBLIC_URL + "/comment.png"} width="40rem" height="40rem" />
+        &nbsp;Comment
+      </Button>
+      
+      {/* 댓글 창 */}
+      {showComment && (
+        <TextField
+        
+          id="comment"
+          label="Enter the text"
+          variant="outlined"
+          multiline
+          rows={4}
+          fullWidth
+          margin="normal"
+        />
+      )}
+    </Box>
     </>
   );
 };
 
 export default DetailPage;
-
-const LikeButton = styled.button`
-  border:"none";
-  margin :3;
-  padding:3;
-  position: 'relative',
-`;
