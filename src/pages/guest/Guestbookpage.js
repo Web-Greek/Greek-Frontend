@@ -4,6 +4,7 @@ import { CssBaseline, Container, Button, TextField, Avatar, Grid, Box, Stack } f
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from "@mui/material";
 
 function Guestbookpage(props) {
   const [nickname, setNickname] = useState("");
@@ -105,16 +106,28 @@ function Guestbookpage(props) {
       <br/><br/><br/>
       <h2 style={{textAlign: "center", fontFamily: "Century Gothic, sans-serif"}}>📖Guest Book</h2>
       <hr style={{ width: 850, margin: "0 auto"}} />
-      <Stack sx={{justifyContent: "center", alignItems: "center"}}>
-        {guests.map((guest, index) => (
-          <Guest
-            key={index}
-            nickname={guest.nickname}
-            currentTime={guest.currentTime}
-            contents={guest.contents}
-          />
-        ))}
-      </Stack>
+      <Container>
+        <TableContainer component={Paper}>
+          <Table aria-label="guestbook table">
+            <TableHead>
+              <TableRow>
+                <TableCell>Nickname</TableCell>
+                <TableCell>Contents</TableCell>
+                <TableCell>Time</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {guests.map((guest, index) => (
+                <TableRow key={index}>
+                  <TableCell>{guest.nickname}</TableCell>
+                  <TableCell>{guest.contents}</TableCell>
+                  <TableCell>{guest.currentTime.toLocaleDateString()} {guest.currentTime.toLocaleTimeString()}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </React.Fragment>
   );
 }
