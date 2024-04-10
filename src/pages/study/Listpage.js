@@ -6,7 +6,35 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import EditIcon from '@mui/icons-material/Edit';
 import { Link } from 'react-router-dom';
 
-const cards = [1, 2, 3, 4]; // Adjust the number of cards as per your 2x2 layout
+
+// 포스팅 글 -> detail 폴더에 작성
+
+const cardData = [
+  {
+    id: 1,
+    imageUrl: "https://images.mypetlife.co.kr/content/uploads/2023/11/17133418/61fbb115-3845-4427-b72d-76c5e650cd3c.jpeg",
+    title: "Card Title 1",
+    content: "Card content 1",
+  },
+  {
+    id: 2,
+    imageUrl: "https://source.unsplash.com/random?sig=2",
+    title: "Card Title 2",
+    content: "Card content 2",
+  },
+  {
+    id: 3,
+    imageUrl: "https://source.unsplash.com/random?sig=3",
+    title: "Card Title 3",
+    content: "Card content 3",
+  },
+  {
+    id: 4,
+    imageUrl: "https://source.unsplash.com/random?sig=4",
+    title: "Card Title 4",
+    content: "Card content 4",
+  },
+];
 
 
 const defaultTheme = createTheme();
@@ -66,7 +94,7 @@ function Listpage() {
           {/* Posts cards container */}
           <Container maxWidth="md" sx={{ pt: 10 }}>
             <Grid container spacing={8}>
-              {cards.map((card) => (
+              {cardData.map((card) => (
                 <Grid item key={card} xs={12} sm={6} sx={{ px: 4 }}>
                   <Card
                     sx={{
@@ -79,14 +107,14 @@ function Listpage() {
                       <CardMedia
                         component="img"
                         height="140"
-                        image="https://source.unsplash.com/random?wallpapers"
-                        alt={`Content ${card}`}
+                        image={card.imageUrl}
+                        alt={card.title}
                       />
                       <CardContent sx={{ flexGrow: 1 }}>
                         <Typography gutterBottom variant="h5" component="h2" sx={{ color: 'black' }}>
-                          제목 {card}
+                          {card.title}
                         </Typography>
-                        <Typography sx={{ color: 'black' }}>User ID {card}</Typography>
+                        <Typography sx={{ color: 'black' }}>{card.content}</Typography>
                       </CardContent>
                     </Link>
                   </Card>
