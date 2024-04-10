@@ -105,7 +105,6 @@ function Guestbookpage(props) {
       <br/><br/><br/>
       <br/><br/><br/>
       <h2 style={{textAlign: "center", fontFamily: "Century Gothic, sans-serif"}}>📖Guest Book</h2>
-      <hr style={{ width: 850, margin: "0 auto"}} />
       <Container>
         <TableContainer component={Paper}>
           <Table aria-label="guestbook table">
@@ -133,3 +132,5 @@ function Guestbookpage(props) {
 }
 
 export default Guestbookpage;
+
+
