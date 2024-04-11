@@ -23,27 +23,27 @@ const Team = () => {
   return (
     <div className="team-page-container">
       <Section
-        image="가천대.jpeg"
+        image="가천대.png"
         title="Gogeup Web Programming"
         description="고급웹 프로그래밍 수업에서"
       />
       <Section
-        image="혁신.jpeg"
+        image="혁신.png"
         title="Revolutionary"
         description="혁신적이고"
       />
       <Section
-        image="화이팅.jpeg"
+        image="화이팅.png"
         title="Energetic"
-        description="에너제틱하며"
+        description="항상 에너지있게"
       />
       <Section
-        image="교육.jpeg"
+        image="교육.png"
         title="Educational"
-        description="교육적으로"
+        description="배우며"
       />
       <Section
-        image="창조.jpeg"
+        image="창조.png"
         title="Kreator"
         description="창조적인 개발자로 성장하겠습니다"
       />
