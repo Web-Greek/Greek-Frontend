@@ -126,7 +126,7 @@ function Listpage() {
             
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 4, mr: 4  }}>
               <Link to = "/Editor" style={{ textDecoration: 'none' }}>
-                <Button variant="contained" endIcon={<EditIcon />} sx={{ backgroundColor: '#000', color: '#fff', '&:hover': { backgroundColor: 'rgba(0, 0, 0, 0.8)' } }}>
+                <Button variant="contained" endIcon={<EditIcon />} sx={{ backgroundColor: '#1B730E', color: '#fff', '&:hover': { backgroundColor: '#1B730E' } }}>
                   작성하기
                 </Button>
               </Link>
