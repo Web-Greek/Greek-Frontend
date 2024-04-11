@@ -6,7 +6,7 @@ import Listpage from "./pages/study/Listpage";
 import Postingpage from "./pages/study/Postingpage";
 import Detailpage from "./pages/study/Detailpage";
 import Guestbookpage from "./pages/guest/Guestbookpage";
-import Calenderpage from "./pages/Calenderpage";
+import CalendarPage from "./pages/calender/CalenderPage";
 
 function App() {
   return (
@@ -15,7 +15,7 @@ function App() {
         <CustomAppBar />
         <Routes>
           <Route path="/" element={<Homepage />} />
-          <Route path="/calender" element={<Calenderpage />}/>
+          <Route path="/calender" element={<CalendarPage />} />
           <Route path="/study" element={<Listpage />} />
           <Route path="/Editor" element={<Postingpage />} />
           <Route path="/study/detail/:id" element={<Detailpage />} />
