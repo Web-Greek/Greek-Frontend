@@ -1,0 +1,50 @@
+/* TeamPage.css */
+.team-page-container {
+  overflow-y: scroll;
+  height: 100vh; /* This restricts the container to the height of the viewport */
+  scroll-snap-type: y mandatory;
+}
+
+.team-section {
+  scroll-snap-align: start;
+  height: 100vh; /* Each section will take up the full height of the viewport */
+  width: 100%; /* Ensure the section spans the full width */
+  position: relative; /* Position relative to place content over the background */
+  display: flex; /* Use flexbox to center content */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+  background-size: cover; /* Ensure the background image covers the section */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Don't repeat the background */
+}
+
+.section-background {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+.section-content {
+  z-index: 2; /* Ensure content is above the background */
+  color: white; /* Text color for readability */
+  backdrop-filter: blur(5px); /* Blur effect for the active class */
+  padding: 20px; /* Padding around the text */
+  max-width: 600px; /* Maximum width of the text box */
+  margin: 0 auto; /* Center the text box if it's not full width */
+  transform: translateY(-50%); /* Adjust vertical alignment */
+  transition: opacity 0.8s ease, backdrop-filter 0.8s ease; /* Smooth transition for blur and opacity */
+  opacity: 0; /* Start with text invisible */
+}
+
+.section-content.active {
+  opacity: 1; /* Make text fully visible when active */
+  backdrop-filter: blur(10px); /* Increase the blur when active */
+}
+
+/* Additional styles for the content within .section-content */
+/* such as h2, p, etc. */

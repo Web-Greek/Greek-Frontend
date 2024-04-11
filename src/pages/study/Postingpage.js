@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { CssBaseline, Container, Button, TextField } from "@mui/material";
+import MDEditor from '@uiw/react-md-editor';
 
 export default function PostingBubble() {
   const [postTitle, setPostTitle] = useState("");
@@ -9,8 +10,8 @@ export default function PostingBubble() {
     setPostTitle(e.target.value);
   };
 
-  const handleContentChange = (e) => {
-    setContents(e.target.value);
+  const handleContentChange = (value) => {
+    setContents(value);
   };
 
   const handleSubmit = () => {
@@ -24,7 +25,9 @@ export default function PostingBubble() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <Container component="main" maxWidth="md" sx={{ mt: 5 }}>
+      <Container component="main" maxWidth="md" sx={{ mt: 5, textAlign: 'center', height: '100vh' }}>
+
+
         <TextField
           label="제목"
           variant="outlined"
@@ -33,26 +36,29 @@ export default function PostingBubble() {
           value={postTitle}
           onChange={handleTitleChange}
         />
-        <TextField
-          label="내용"
-          variant="outlined"
-          multiline
-          rows={10}
-          fullWidth
+        <MDEditor
           value={contents}
           onChange={handleContentChange}
+          height={400}
         />
+        <div className="markdownDiv" data-color-mode="light" style={{padding:15}}>
+          <MDEditor.Markdown
+            style={{ padding: 10 }}
+            source={contents} // 마크다운 뷰어에는 작성한 내용을 보여줍니다.
+          />
+        </div>
         <Button
           variant="contained"
           onClick={handleSubmit}
           sx={{
             mt: 3,
             padding: "0.3rem 1.5rem",
-            backgroundColor: "#D4AB39",
+            backgroundColor: "#1B730E", //"#1B730E"->이게 그릭 로고 글자색상!!
             color: "white",
             "&:hover": {
-              backgroundColor: "#D4AB39",
+              backgroundColor: "#1B730E",
             },
+            
           }}
         >
           작성하기
