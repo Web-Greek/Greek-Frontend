@@ -22,11 +22,13 @@ function Guestbookpage(props) {
 
   // 게스트 추가
   const addGuest = (nickname, currentTime, contents) => {
-    setGuests([...guests, {nickname, currentTime, contents}])
+    setGuests([...guests, {nickname, currentTime, contents}].reverse())
   }
 
   // 버튼 클릭시
   const handleSubmit = () => {
+    if(nickname == '' || contents == '')
+      return;
     setCurrentTime(new Date());
     addGuest(nickname, currentTime, contents);
     setNickname('');
